@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'card_button.dart';
+import '../../widget/card_button.dart';
 
 class AllData extends ChangeNotifier {
 
