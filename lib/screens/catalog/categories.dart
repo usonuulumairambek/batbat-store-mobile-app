@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'inner_categories/male.dart';
-import 'inner_categories/female.dart';
-import 'inner_categories/children.dart';
-import 'inner_categories/Other.dart';
-import 'screen_of_categories.dart';
+import 'package:project_for_company/menu_screens/inner_categories/male.dart';
+import 'package:project_for_company/menu_screens/inner_categories/female.dart';
+import 'package:project_for_company/menu_screens/inner_categories/children.dart';
+import 'package:project_for_company/menu_screens/inner_categories/Other.dart';
+import 'package:project_for_company/menu_screens/screen_of_categories.dart';
 
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);

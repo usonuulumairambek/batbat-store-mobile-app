@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:project_for_company/data.dart';
+import 'package:project_for_company/repository/data/data.dart';
 
 class ShoppingCart extends StatefulWidget {
   const ShoppingCart({Key? key}) : super(key: key);

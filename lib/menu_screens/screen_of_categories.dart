@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_for_company/card_button.dart';
+import 'package:project_for_company/widget/card_button.dart';
 
 class ScreenOfCategories extends StatefulWidget {
 

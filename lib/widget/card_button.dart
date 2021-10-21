@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project_for_company/repository/data/data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'cart_screens/inner_screen.dart';
+import 'package:project_for_company/cart_screens/inner_screen.dart';
 
 class CartButton extends StatefulWidget {
 
