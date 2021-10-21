@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "evan",
       routes: mainNavigation.routes,
-      initialRoute: MainNavigationRouteName.app,
+      initialRoute: mainNavigation.initialRoute,
+      onGenerateRoute: mainNavigation.onGenerateRoute,
     );
   }
 }

@@ -14,22 +14,22 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple[300],
-        title: TextField(
-          onChanged: (value) {
-            str = value;
-          },
-          decoration: InputDecoration(border: InputBorder.none,
-            hintText: 'Search',),
-          autofocus: true,
-        ),
-        centerTitle: true,
-        actions: [
-          //TODO: Searching
-          IconButton(icon: Icon(Icons.search, color: Colors.white,), onPressed: () {},),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.purple[300],
+      //   title: TextField(
+      //     onChanged: (value) {
+      //       str = value;
+      //     },
+      //     decoration: InputDecoration(border: InputBorder.none,
+      //       hintText: 'Search',),
+      //     autofocus: true,
+      //   ),
+      //   centerTitle: true,
+      //   actions: [
+      //     //TODO: Searching
+      //     IconButton(icon: Icon(Icons.search, color: Colors.white,), onPressed: () {},),
+      //   ],
+      // ),
       body: ListView(
         children: [],
       ),
