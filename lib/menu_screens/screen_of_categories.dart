@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:project_for_company/data.dart';
+import 'package:project_for_company/card_button.dart';
 
-class ShoppingCart extends StatefulWidget {
-  const ShoppingCart({Key? key}) : super(key: key);
+class ScreenOfCategories extends StatefulWidget {
+
+  final String name;
+  final int indexList;
+
+
+  ScreenOfCategories(this.name, this.indexList);
 
   @override
-  _ShoppingCartState createState() => _ShoppingCartState();
+  _ScreenOfCategoriesState createState() => _ScreenOfCategoriesState();
 }
 
-class _ShoppingCartState extends State<ShoppingCart> {
+class _ScreenOfCategoriesState extends State<ScreenOfCategories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text('Корзина', style: TextStyle(color: Colors.white),),
+        title: Text(widget.name, style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
       body: ListView(
@@ -25,7 +29,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
             childAspectRatio: (1 / 2),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            children: Provider.of<AllData>(context).getShopThings(),
+            children: [],
           )
         ],
       ),

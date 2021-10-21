@@ -4,8 +4,15 @@ import '../../widget/card_button.dart';
 class AllData extends ChangeNotifier {
 
   List<CartButton> likedThing = [];
+  List<CartButton> shop = [];
+  List<CartButton> allStaff = [
+    CartButton(0,'Худи', 10, 2000, 0),
+    CartButton(1,'Air force 1', 10, 2000, 0),
+    CartButton(0,'Худи', 10, 2000, 0),
+    CartButton(1,'Air force 1', 10, 2000, 0),
+  ];
 
-  List<String> url = [
+  List<String> urlAds = [
     'https://image.shutterstock.com/image-vector/sale-poster-3d-pastel-illustration-600w-1838372179.jpg',
     'https://image.shutterstock.com/image-vector/online-delivery-service-concept-order-600w-1505134385.jpg',
     'https://image.shutterstock.com/image-photo/love-holiday-sales-shop-retail-600w-1702302571.jpg'
@@ -27,15 +34,34 @@ class AllData extends ChangeNotifier {
       'https://sneakernews.com/wp-content/uploads/2021/07/undefeated-nike-air-force-1-low-grey-blue-red-1.jpg',],
   ];
 
+  //TODO for saving and removing staff
   List<String> getUrl() {
-    return url;
+    return urlAds;
   }
 
-  void addLiked(int indexDress, String str, int percent, int cost, int lastCost, bool liked) {
-    likedThing.add(CartButton(indexDress, str, percent, cost, lastCost, liked));
+  List<CartButton> getLikedThings() {
+    return likedThing;
   }
-  void removeLiked(CartButton cartButton) {
-    int index1 = likedThing.indexOf(cartButton);
-    likedThing.removeAt(index1);
+
+  List<CartButton> getShopThings() {
+    return shop;
+  }
+
+  int addLiked(int indexDress, String str, int percent, int cost, int lastCost, bool liked, bool shopThing) {
+    likedThing.add(CartButton(indexDress, str, percent, cost, lastCost));
+    return likedThing.length -1;
+  }
+  void removeLiked(int index) {
+      likedThing.removeAt(index);
+      notifyListeners();
+  }
+
+  int addShop(int indexDress, String str, int percent, int cost, int lastCost, bool liked, bool shopThing) {
+    shop.add(CartButton(indexDress, str, percent, cost, lastCost));
+    return shop.length - 1;
+  }
+  void removeShop(int index) {
+    shop.removeAt(index);
+    notifyListeners();
   }
 }

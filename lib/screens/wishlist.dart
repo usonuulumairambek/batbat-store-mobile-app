@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:project_for_company/widget/card_button.dart';
-import 'package:project_for_company/repository/data/data.dart';
+import 'package:project_for_company/data.dart';
 
-class WishList extends StatefulWidget {
-  const WishList({Key? key}) : super(key: key);
-
-  @override
-  _WishListState createState() => _WishListState();
-}
-
-class _WishListState extends State<WishList> {
+class WishList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +18,7 @@ class _WishListState extends State<WishList> {
             childAspectRatio: (1 / 2),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            children: Provider.of<AllData>(context).likedThing,
+            children: Provider.of<AllData>(context).getLikedThings(),
           )
         ],
       ),

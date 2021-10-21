@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'inner_categories/male.dart';
+import 'inner_categories/female.dart';
+import 'inner_categories/children.dart';
+import 'inner_categories/Other.dart';
+import 'screen_of_categories.dart';
 
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);
@@ -9,6 +14,33 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
+
+  Column getTile(String name, VoidCallback fun) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(name),
+          onTap: fun,
+          trailing: Icon(CupertinoIcons.right_chevron),
+        ),
+        Divider(thickness: 2, indent: 15, endIndent: 15, color: Colors.grey,),
+      ],
+    );
+  }
+
+  Column getPageTile(String name, VoidCallback fun) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(name),
+          onTap: fun,
+          trailing: Icon(CupertinoIcons.circle_grid_hex_fill),
+        ),
+        Divider(thickness: 2, indent: 15, endIndent: 15, color: Colors.grey,),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,57 +52,39 @@ class _CategoriesState extends State<Categories> {
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(  
         children: [
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Женская одежда'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Мужская одежда'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Детская одежда'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Новинки'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Большие размеры'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Распродажа'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Акции'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
-          ListTile(
-            leading: Icon(CupertinoIcons.circle_grid_hex_fill, color: Colors.purple,),
-            title: const Text('Колекции'),
-            onTap: () {},
-            trailing: Icon(CupertinoIcons.right_chevron),
-          ),
+          getPageTile('Разное', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Other()));
+          }),
+          getPageTile('Женская одежда', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Female()));
+          }),
+          getPageTile('Мужская одежда', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Male()));
+          }),
+          getPageTile('Детская одежда', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Children()));
+          }),
+          getTile('Новинки', () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Новинки', 0)));
+          }),
+          getTile('Большие размеры', () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Большие размеры', 1)));
+          }),
+          getTile('Распродажа', () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Распродажа', 2)));
+          }),
+          getTile('Акции', () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Акции', 3)));
+          }),
+          getTile('Колекции', () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Колекции', 4)));
+          }),
         ],
       ),
     );

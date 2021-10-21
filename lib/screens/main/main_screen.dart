@@ -22,9 +22,9 @@ class _MainScreenState extends State<MainScreen> {
         Column(
           children: [
             CarouselSlider.builder(
-              itemCount: Provider.of<AllData>(context).url.length,
+              itemCount: Provider.of<AllData>(context).urlAds.length,
               itemBuilder: (context, index, realIndex) {
-                final urlImage = Provider.of<AllData>(context).url[index];
+                final urlImage = Provider.of<AllData>(context).urlAds[index];
                 return buildImage(urlImage, realIndex);
               },
               options: CarouselOptions(
@@ -65,10 +65,10 @@ class _MainScreenState extends State<MainScreen> {
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: [
-            CartButton(0,'Худи', 10, 2000, 0, false),
-            CartButton(1,'Air force 1', 10, 2000, 0, false),
-            CartButton(0,'Худи', 10, 2000, 0, false),
-            CartButton(1,'Air force 1', 10, 2000, 0, false),
+            CartButton(0,'Худи', 0, 2000, 0),
+            CartButton(1,'Air force 1', 10, 2000, 0),
+            CartButton(0,'Худи', 10, 2000, 0),
+            CartButton(1,'Air force 1', 10, 2000, 0),
           ],
         )
       ]),
@@ -107,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
-        count: Provider.of<AllData>(context).url.length,
+        count: Provider.of<AllData>(context).urlAds.length,
         effect: WormEffect(
             type: WormType.thin,
             dotWidth: 10,
