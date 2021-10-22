@@ -24,7 +24,7 @@ class _FirstScreenState extends State<FirstScreen> {
     SearchScreen(),
     Categories(),
     Text(
-      'Index 4: School',
+      'скоро',
       style: optionStyle,
     ),
   ];
@@ -39,7 +39,7 @@ class _FirstScreenState extends State<FirstScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BatBat', style: TextStyle(color: Colors.white),),
+        title: Text('BatBat - ', style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.purple,
         actions: [
           IconButton(onPressed: (){

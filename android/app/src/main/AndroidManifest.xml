@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET">
     </uses-permission>
    <application
-        android:label="project_for_company"
+        android:label="BatBat"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
