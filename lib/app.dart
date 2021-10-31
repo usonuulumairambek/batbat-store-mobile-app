@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_for_company/screens/catalog/categories.dart';
 import 'package:project_for_company/screens/main/main_screen.dart';
+import 'package:project_for_company/screens/menu/menu.dart';
 
 import 'screens/main/notif/notification.dart';
 import 'screens/main/search/search_screen.dart';
@@ -18,15 +19,12 @@ class FirstScreen extends StatefulWidget {
 class _FirstScreenState extends State<FirstScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     MainScreen(),
     SearchScreen(),
     Categories(),
-    Text(
-      'скоро',
-      style: optionStyle,
-    ),
+    Menu(),
   ];
 
   void _onItemTapped(int index) {
@@ -39,20 +37,38 @@ class _FirstScreenState extends State<FirstScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BatBat - ', style: TextStyle(color: Colors.white),),
+        title: Text(
+          'BatBat - ',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.purple,
         actions: [
-          IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));
-          }, icon: Icon(Icons.search)),
-          SizedBox(width: 10,),
-          IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => WishList()));
-          }, icon: Icon(CupertinoIcons.heart_solid)),
-          SizedBox(width: 10,),
-          IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
-          }, icon: Icon(CupertinoIcons.bell)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchScreen()));
+              },
+              icon: Icon(Icons.search)),
+          SizedBox(
+            width: 10,
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WishList()));
+              },
+              icon: Icon(CupertinoIcons.heart_solid)),
+          SizedBox(
+            width: 10,
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NotificationScreen()));
+              },
+              icon: Icon(CupertinoIcons.bell)),
         ],
       ),
       drawer: Drawer(
@@ -60,31 +76,46 @@ class _FirstScreenState extends State<FirstScreen> {
           padding: EdgeInsets.zero,
           children: [
             ListTile(
-              leading: Icon(CupertinoIcons.square_grid_4x3_fill, color: Colors.purple,),
+              leading: Icon(
+                CupertinoIcons.square_grid_4x3_fill,
+                color: Colors.purple,
+              ),
               title: const Text('Категории'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Categories()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Categories()));
               },
               trailing: Icon(CupertinoIcons.right_chevron),
             ),
             ListTile(
-              leading: Icon(Icons.add_shopping_cart_outlined, color: Colors.purple,),
+              leading: Icon(
+                Icons.add_shopping_cart_outlined,
+                color: Colors.purple,
+              ),
               title: const Text('Корзина покупателя'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingCart()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ShoppingCart()));
               },
               trailing: Icon(CupertinoIcons.right_chevron),
             ),
             ListTile(
-              leading: Icon(CupertinoIcons.heart_solid, color: Colors.purple,),
+              leading: Icon(
+                CupertinoIcons.heart_solid,
+                color: Colors.purple,
+              ),
               title: const Text('Список желаний'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => WishList()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WishList()));
               },
               trailing: Icon(CupertinoIcons.right_chevron),
             ),
             ListTile(
-              leading: Icon(Icons.assignment_returned_rounded, color: Colors.purple,),
+              leading: Icon(
+                Icons.assignment_returned_rounded,
+                color: Colors.purple,
+              ),
               title: const Text('Войти'),
               onTap: () {
                 Navigator.pop(context);
@@ -92,7 +123,10 @@ class _FirstScreenState extends State<FirstScreen> {
               trailing: Icon(CupertinoIcons.right_chevron),
             ),
             ListTile(
-              leading: Icon(CupertinoIcons.person_add_solid, color: Colors.purple,),
+              leading: Icon(
+                CupertinoIcons.person_add_solid,
+                color: Colors.purple,
+              ),
               title: const Text('Зарегестрироваться'),
               onTap: () {
                 Navigator.pop(context);
@@ -100,7 +134,10 @@ class _FirstScreenState extends State<FirstScreen> {
               trailing: Icon(CupertinoIcons.right_chevron),
             ),
             ListTile(
-              leading: Icon(CupertinoIcons.power, color: Colors.purple,),
+              leading: Icon(
+                CupertinoIcons.power,
+                color: Colors.purple,
+              ),
               title: const Text('Выйти'),
               onTap: () {
                 Navigator.pop(context);
