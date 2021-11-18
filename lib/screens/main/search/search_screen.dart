@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+import 'package:project_for_company/widget/card_button.dart';
+import 'package:project_for_company/repository/data/data.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -8,30 +13,35 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-
-  String str = '';
-
+  List<CartButton> searchArr =[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[300],
-        title: TextField(
-          onChanged: (value) {
-            str = value;
-          },
-          decoration: InputDecoration(border: InputBorder.none,
-            hintText: 'Search',),
-          autofocus: true,
-        ),
+        backgroundColor: Colors.purple,
+        title: CupertinoSearchTextField(backgroundColor: Colors.white,
+        onChanged: (str) {
+          setState(() {
+            if (str.length >= 1) {
+              Provider.of<AllData>(context, listen: false).allStaff.forEach((e) {
+                if (e.str.toLowerCase().contains(str.toLowerCase())) {
+                  if(!searchArr.contains(e)) {
+                    searchArr.add(e);
+                  }
+                }
+              });
+            } else {
+              searchArr = [];
+            }
+          });
+        },),
         centerTitle: true,
-        actions: [
-          //TODO: Searching
-          IconButton(icon: Icon(Icons.search, color: Colors.white,), onPressed: () {},),
-        ],
       ),
       body: ListView(
-        children: [],
+        children: [Column(
+          children:searchArr,
+        ),
+      ]
       ),
     );
   }

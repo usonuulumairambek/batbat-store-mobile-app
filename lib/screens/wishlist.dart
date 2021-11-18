@@ -13,11 +13,7 @@ class WishList extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          GridView.count(
-            crossAxisCount: 2,
-            childAspectRatio: (1 / 2),
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
+          Column(
             children: Provider.of<AllData>(context).getLikedThings(),
           )
         ],

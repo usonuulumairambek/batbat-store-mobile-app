@@ -49,10 +49,6 @@ class _FirstScreenState extends State<FirstScreen> {
           IconButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => WishList()));
           }, icon: Icon(CupertinoIcons.heart_solid)),
-          SizedBox(width: 10,),
-          IconButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
-          }, icon: Icon(CupertinoIcons.bell)),
         ],
       ),
       drawer: Drawer(

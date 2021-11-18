@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:project_for_company/repository/data/data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:provider/provider.dart';
 
 class InnerScreen extends StatefulWidget {
-  final int indexDress;
-  int cost = 1500;
-  int lastCost = 0;
+  final List<String> images;
+  final int cost;
+  final int lastCost;
 
-  List<String> characteristic = ['Nice', 'Кыргызстан','ЕАС(Томоженный союз)','России,Казахстану, Беларуси',
-  'Демисезон', 'Трехнитка с начесом', 'без застежки', 'каюшое' , 'округлый', 'начес', 'оверсайз','с капюшеном' ,'Детский'];
+  List<String> characteristic = ['Норм худи бери','Nice', 'Кыргызстан','ЕАС(Томоженный союз)','России,Казахстану, Беларуси',
+  'Демисезон', 'Трехнитка с начесом'];
 
 
-  InnerScreen(this.indexDress);
+  InnerScreen({required this.images,required this.cost,required this.lastCost,required this.characteristic});
 
   @override
   _InnerScreenState createState() => _InnerScreenState();
@@ -34,11 +32,9 @@ class _InnerScreenState extends State<InnerScreen> {
       body: ListView(
         children: [
           CarouselSlider.builder(
-            itemCount:
-                Provider.of<AllData>(context).images[widget.indexDress].length,
+            itemCount:widget.images.length,
             itemBuilder: (context, index, realIndex) {
-              final urlImage = Provider.of<AllData>(context)
-                  .images[widget.indexDress][index];
+              final urlImage = widget.images[index];
               return buildButton(urlImage, realIndex);
             },
             options: CarouselOptions(
@@ -90,52 +86,32 @@ class _InnerScreenState extends State<InnerScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Комплектация: ${widget.characteristic[0]}'),
+                child: Text('Описание: ${widget.characteristic[0]}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Страна-производитель: ${widget.characteristic[1]}'),
+                child: Text('Бренд: ${widget.characteristic[1]}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Сертификат: ${widget.characteristic[2]}'),
+                child: Text('Страна-производитель: ${widget.characteristic[2]}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Беспл. доставка: по ${widget.characteristic[3]}'),
+                child: Text('Сертификат: ${widget.characteristic[3]}'),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Беспл. доставка: по ${widget.characteristic[4]}'),
               ),
               //TODO: отсюда
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Сезон: ${widget.characteristic[4]}'),
+                child: Text('Сезон: ${widget.characteristic[5]}'),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Ткань: ${widget.characteristic[5]}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Вид застежки: ${widget.characteristic[6]}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Воротник: ${widget.characteristic[7]}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Утеплитель: ${widget.characteristic[8]}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Покрой: ${widget.characteristic[9]}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Капишон: ${widget.characteristic[10]}'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Детский: ${widget.characteristic[11]}'),
+                child: Text('Ткань: ${widget.characteristic[6]}'),
               ),
             ],
           ),)
@@ -148,7 +124,7 @@ class _InnerScreenState extends State<InnerScreen> {
   Widget buildButton(String urlImage, int index) => Image.network(urlImage);
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
-        count: Provider.of<AllData>(context).images[widget.indexDress].length,
+        count: widget.images.length,
         effect: WormEffect(
             type: WormType.thin,
             dotWidth: 10,

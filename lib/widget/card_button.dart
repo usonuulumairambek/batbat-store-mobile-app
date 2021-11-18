@@ -10,17 +10,20 @@ class CartButton extends StatefulWidget {
 
   @override
   _CartButtonState createState() => _CartButtonState();
-  final int indexDress;
+  final idOfStaff;
+  final List<String>images;
   final String str;
   final int percent;
   final int cost;
   int lastCost;
-  bool liked = false;
-  bool shopThing = false;
+  bool liked;
+  bool shopThing;
   int indexOfLikedThings = 0;
   int indexOfShopThings = 0;
+  List<String> characteristic;
 
-  CartButton(this.indexDress, this.str, this.percent, this.cost, this.lastCost);
+  CartButton({required this.idOfStaff,required this.images,required this.str,required this.percent,
+    required this.cost,required this.lastCost,this.liked = false, this.shopThing = false,required this.characteristic});
 }
 
 class _CartButtonState extends State<CartButton> {
@@ -29,7 +32,7 @@ class _CartButtonState extends State<CartButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => InnerScreen(widget.indexDress)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => InnerScreen(images: widget.images, cost: widget.cost, lastCost: widget.lastCost, characteristic: widget.characteristic)));
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -39,9 +42,9 @@ class _CartButtonState extends State<CartButton> {
         child: Column(
           children: [
             CarouselSlider.builder(
-              itemCount: Provider.of<AllData>(context).images[widget.indexDress].length,
+              itemCount: widget.images.length,
               itemBuilder: (context, index, realIndex) {
-                final urlImage = Provider.of<AllData>(context).images[widget.indexDress][index];
+                final urlImage = widget.images[index];
                 return buildButton(urlImage, realIndex);
               },
               options: CarouselOptions(
@@ -75,13 +78,13 @@ class _CartButtonState extends State<CartButton> {
                       } else{
                         widget.shopThing = true;
                         widget.indexOfShopThings = Provider.of<AllData>(context, listen: false).addShop(
-                            widget.indexDress, widget.str, widget.percent,
-                            widget.cost, widget.lastCost,widget.liked, widget.shopThing);
+                            widget.idOfStaff, widget.images, widget.str, widget.percent,
+                            widget.cost, widget.lastCost,widget.liked, widget.shopThing, widget.characteristic);
                       }
                     });
                   },
                   icon: Icon(
-                    widget.shopThing ?CupertinoIcons.shopping_cart : Icons.add_shopping_cart,
+                    widget.shopThing ? CupertinoIcons.delete_simple: CupertinoIcons.shopping_cart,
                     color: Colors.purple,
                   )),
               trailing: IconButton(
@@ -94,8 +97,8 @@ class _CartButtonState extends State<CartButton> {
                     } else{
                       widget.liked = true;
                       widget.indexOfLikedThings =  Provider.of<AllData>(context, listen: false).addLiked(
-                          widget.indexDress, widget.str, widget.percent,
-                          widget.cost, widget.lastCost, widget.liked, widget.shopThing);
+                          widget.idOfStaff, widget.images, widget.str, widget.percent,
+                          widget.cost, widget.lastCost, widget.liked, widget.shopThing, widget.characteristic);
                     }
                   });
                 },
@@ -124,23 +127,23 @@ class _CartButtonState extends State<CartButton> {
 
   Widget buildButton(String urlImage, int index) => GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => InnerScreen(widget.indexDress)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => InnerScreen(images: widget.images, cost: widget.cost, lastCost: widget.lastCost, characteristic: widget.characteristic)));
         },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             image: DecorationImage(
               image: NetworkImage(urlImage),
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             ),
-            color: Colors.grey,
+            color: Colors.white,
           ),
           margin: EdgeInsets.all(10),
         ),
       );
   Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
-        count: Provider.of<AllData>(context).images[widget.indexDress].length,
+        count: widget.images.length,
         effect: WormEffect(
             type: WormType.thin,
             dotWidth: 10,

@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_for_company/menu_screens/inner_categories/male.dart';
 import 'package:project_for_company/menu_screens/inner_categories/female.dart';
-import 'package:project_for_company/menu_screens/inner_categories/children.dart';
-import 'package:project_for_company/menu_screens/inner_categories/Other.dart';
 import 'package:project_for_company/menu_screens/screen_of_categories.dart';
 
 class Categories extends StatefulWidget {
@@ -54,10 +52,6 @@ class _CategoriesState extends State<Categories> {
       ),
       body: ListView(  
         children: [
-          getPageTile('Разное', () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Other()));
-          }),
           getPageTile('Женская одежда', () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => Female()));
@@ -66,24 +60,16 @@ class _CategoriesState extends State<Categories> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => Male()));
           }),
-          getPageTile('Детская одежда', () {
+          getPageTile('Одежда для мальчика', () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Children()));
+                MaterialPageRoute(builder: (context) => Male()));
           }),
-          getTile('Новинки', () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Новинки', 0)));
-          }),
-          getTile('Большие размеры', () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Большие размеры', 1)));
-          }),
-          getTile('Распродажа', () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Распродажа', 2)));
+          getPageTile('Одежда для девочки', () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Male()));
           }),
           getTile('Акции', () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Акции', 3)));
-          }),
-          getTile('Колекции', () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Колекции', 4)));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenOfCategories('Акции', 0)));
           }),
         ],
       ),

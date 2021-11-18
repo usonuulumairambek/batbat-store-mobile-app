@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_for_company/widget/card_button.dart';
+import 'package:provider/provider.dart';
+import 'package:project_for_company/repository/data/data.dart';
 
 class ScreenOfCategories extends StatefulWidget {
 
@@ -15,6 +17,13 @@ class ScreenOfCategories extends StatefulWidget {
 
 class _ScreenOfCategoriesState extends State<ScreenOfCategories> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+      Provider.of<AllData>(context, listen: false).sortCarts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +38,7 @@ class _ScreenOfCategoriesState extends State<ScreenOfCategories> {
             childAspectRatio: (1 / 2),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            children: [],
+            children: Provider.of<AllData>(context).cartCategories[widget.indexList],
           )
         ],
       ),
